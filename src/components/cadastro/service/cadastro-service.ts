@@ -1,8 +1,10 @@
 import { RegisterFormData } from "../resolver";
 
+const API_URL = import.meta.env.VITE_API_URL?.replace(/\/$/, "") || "http://localhost:3000";
+
 export const registerService = async (data: RegisterFormData) => {
   try {
-    const response = await fetch(" ", {
+    const response = await fetch(`${API_URL}/api/cadastro`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),

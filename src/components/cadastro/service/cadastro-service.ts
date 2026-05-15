@@ -2,7 +2,9 @@ import { RegisterFormData } from "../resolver";
 
 const API_URL = import.meta.env.VITE_API_URL?.replace(/\/$/, "") || "http://localhost:3000";
 
-export const registerService = async (data: RegisterFormData) => {
+type RegisterRequestData = Omit<RegisterFormData, "confirmPassword">;
+
+export const registerService = async (data: RegisterRequestData) => {
   try {
     const response = await fetch(`${API_URL}/api/cadastro`, {
       method: "POST",

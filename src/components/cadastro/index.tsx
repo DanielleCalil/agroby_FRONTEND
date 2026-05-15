@@ -3,7 +3,6 @@
 import { useRegister } from "./hook/cadastro-hook";
 
 export function Cadastro() {
-
   const {
     register,
     handleSubmit,
@@ -12,7 +11,7 @@ export function Cadastro() {
     loading,
     apiError,
     tipoConta,
-    setValue,
+    handleTipoContaChange,
   } = useRegister();
 
   return (
@@ -21,7 +20,10 @@ export function Cadastro() {
         <img src="logo-AgroBy.png" alt="" />
         <h3>AgroBy</h3>
       </div>
-      <form className="container-login" onSubmit={handleSubmit(handleRegister)}>
+      <form
+        className="container-login cadastro-container"
+        onSubmit={handleSubmit(handleRegister)}
+      >
         <div className="title">
           <h3>Cadastro</h3>
           <p>Faça o cadastro para criar sua conta no AgroBy.</p>
@@ -29,22 +31,22 @@ export function Cadastro() {
 
         {apiError && <p className="error-message-global">{apiError}</p>}
 
-        <div className="inputs">
+        <div className="inputs cadastro-inputs">
+          <input type="hidden" {...register("tipo_conta")} value={tipoConta} />
           <div className="input">
-            <label>Eu sou</label>
             <div className="tipo-conta">
-              {/* Usamos o setValue para atualizar o valor do Zod manualmente nos botões customizados */}
+              <label className="label-tipo-conta">Eu sou</label>
               <button
                 type="button"
                 className={`btn-tipo-conta ${tipoConta === "cliente" ? "selected" : ""}`}
-                onClick={() => setValue("tipo_conta", "cliente")}
+                onClick={() => handleTipoContaChange("cliente")}
               >
                 <div className="bolinha"></div> Cliente
               </button>
               <button
                 type="button"
                 className={`btn-tipo-conta ${tipoConta === "produtor" ? "selected" : ""}`}
-                onClick={() => setValue("tipo_conta", "produtor")}
+                onClick={() => handleTipoContaChange("produtor")}
               >
                 <div className="bolinha"></div> Produtor
               </button>
@@ -52,38 +54,114 @@ export function Cadastro() {
           </div>
 
           <div className="input">
-            <label htmlFor="nome">Nome</label>
-            <input {...register("nome")} type="text" placeholder="Nome completo" />
-            {errors.nome && <span className="error-text">{errors.nome.message}</span>}
+            <label htmlFor="nome">Nome Completo</label>
+            <input
+              {...register("nome", {
+                setValueAs: (value) =>
+                  typeof value === "string" ? value.toUpperCase() : value,
+              })}
+              type="text"
+              placeholder="Nome completo"
+            />
+            {errors.nome && (
+              <span className="error-text">{errors.nome.message}</span>
+            )}
           </div>
 
-          <div className="input">
-            <label htmlFor="email">E-mail</label>
-            <input {...register("email")} type="email" placeholder="Digite seu email" />
-            {errors.email && <span className="error-text">{errors.email.message}</span>}
+          {tipoConta === "produtor" && (
+            <>
+              <div className="input">
+                <label htmlFor="nome_propriedade">Nome da propriedade</label>
+                <input
+                  {...register("nome_propriedade", {
+                    setValueAs: (value) =>
+                      typeof value === "string"
+                        ? value.toUpperCase()
+                        : value,
+                  })}
+                  type="text"
+                  placeholder="Nome da propriedade"
+                />
+                {errors.nome_propriedade && (
+                  <span className="error-text">
+                    {errors.nome_propriedade.message}
+                  </span>
+                )}
+              </div>
+
+              <div className="input">
+                <label htmlFor="endereco_rural">Endereço rural</label>
+                <input
+                  {...register("endereco_rural")}
+                  type="text"
+                  placeholder="Endereço rural"
+                />
+                {errors.endereco_rural && (
+                  <span className="error-text">
+                    {errors.endereco_rural.message}
+                  </span>
+                )}
+              </div>
+            </>
+          )}
+
+          <div className="input-row">
+            <div className="input">
+              <label htmlFor="email">E-mail</label>
+              <input
+                {...register("email")}
+                type="email"
+                placeholder="Digite seu email"
+              />
+              {errors.email && (
+                <span className="error-text">{errors.email.message}</span>
+              )}
+            </div>
+
+            <div className="input">
+              <label htmlFor="whatsapp">WhatsApp</label>
+              <input
+                {...register("whatsapp")}
+                type="tel"
+                placeholder="(00) 00000-0000"
+              />
+              {errors.whatsapp && (
+                <span className="error-text">{errors.whatsapp.message}</span>
+              )}
+            </div>
           </div>
 
-          <div className="input">
-            <label htmlFor="password">Senha</label>
-            <input {...register("password")} type="password" placeholder="Mínimo 8 caracteres, números e símbolos" />
-            {errors.password && <span className="error-text">{errors.password.message}</span>}
-          </div>
+          <div className="input-row">
+            <div className="input">
+              <label htmlFor="password">Senha</label>
+              <input
+                {...register("password")}
+                type="password"
+                placeholder="Mínimo 8 caracteres, números e símbolos"
+              />
+              {errors.password && (
+                <span className="error-text">{errors.password.message}</span>
+              )}
+            </div>
 
-          <div className="input">
-            <label htmlFor="confirmPassword">Confirmar Senha</label>
-            <input {...register("confirmPassword")} type="password" placeholder="Repita a senha" />
-            {errors.confirmPassword && <span className="error-text">{errors.confirmPassword.message}</span>}
-          </div>
-
-          <div className="input">
-            <label htmlFor="whatsapp">WhatsApp</label>
-            <input {...register("whatsapp")} type="tel" placeholder="(00) 00000-0000" />
-            {errors.whatsapp && <span className="error-text">{errors.whatsapp.message}</span>}
+            <div className="input">
+              <label htmlFor="confirmPassword">Confirmar Senha</label>
+              <input
+                {...register("confirmPassword")}
+                type="password"
+                placeholder="Repita a senha"
+              />
+              {errors.confirmPassword && (
+                <span className="error-text">
+                  {errors.confirmPassword.message}
+                </span>
+              )}
+            </div>
           </div>
         </div>
 
         <button
-          className="button-orange-login"
+          className="button-orange-login cadastro-submit"
           type="submit"
           disabled={loading}
         >

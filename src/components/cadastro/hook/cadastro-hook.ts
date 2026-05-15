@@ -13,20 +13,45 @@ export const useRegister = () => {
     handleSubmit,
     setValue,
     watch,
+    getValues,
     formState: { errors },
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
-    defaultValues: { tipo_conta: "cliente" }
+    defaultValues: { tipo_conta: "C" },
   });
 
-  const tipoConta = watch("tipo_conta");
+  const tipoConta = watch("tipo_conta") || "C";
+
+  const handleTipoContaChange = (value: RegisterFormData["tipo_conta"]) => {
+    setValue("tipo_conta", value, {
+      shouldDirty: true,
+      shouldTouch: true,
+      shouldValidate: true,
+    });
+  };
 
   const handleRegister = async (data: RegisterFormData) => {
     setLoading(true);
     setApiError(null);
     try {
-      await registerService(data);
-      alert("Conta criada com sucesso!");
+      const tipoContaAtual = getValues("tipo_conta") || "C";
+
+      const payload = {
+        tipo_conta: tipoContaAtual,
+        nome: data.nome,
+        email: data.email,
+        whatsapp: data.whatsapp,
+        password: data.password,
+      };
+
+      if (payload.tipo_conta === "P") {
+        Object.assign(payload, {
+          nome_propriedade: data.nome_propriedade,
+          endereco_rural: data.endereco_rural,
+        });
+      }
+
+      await registerService(payload);
       window.location.href = "/login";
     } catch (err: any) {
       setApiError(err.message);
@@ -35,14 +60,14 @@ export const useRegister = () => {
     }
   };
 
-  return { 
-    register, 
-    handleSubmit, 
-    errors, 
-    handleRegister, 
-    loading, 
-    apiError, 
-    tipoConta, 
-    setValue 
+  return {
+    register,
+    handleSubmit,
+    errors,
+    handleRegister,
+    loading,
+    apiError,
+    tipoConta,
+    handleTipoContaChange,
   };
 };

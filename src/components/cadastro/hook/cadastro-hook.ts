@@ -17,10 +17,10 @@ export const useRegister = () => {
     formState: { errors },
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
-    defaultValues: { tipo_conta: "cliente" }
+    defaultValues: { tipo_conta: "C" },
   });
 
-  const tipoConta = watch("tipo_conta") || "cliente";
+  const tipoConta = watch("tipo_conta") || "C";
 
   const handleTipoContaChange = (value: RegisterFormData["tipo_conta"]) => {
     setValue("tipo_conta", value, {
@@ -34,7 +34,7 @@ export const useRegister = () => {
     setLoading(true);
     setApiError(null);
     try {
-      const tipoContaAtual = getValues("tipo_conta") || "cliente";
+      const tipoContaAtual = getValues("tipo_conta") || "C";
 
       const payload = {
         tipo_conta: tipoContaAtual,
@@ -44,7 +44,7 @@ export const useRegister = () => {
         password: data.password,
       };
 
-      if (payload.tipo_conta === "produtor") {
+      if (payload.tipo_conta === "P") {
         Object.assign(payload, {
           nome_propriedade: data.nome_propriedade,
           endereco_rural: data.endereco_rural,
@@ -60,13 +60,13 @@ export const useRegister = () => {
     }
   };
 
-  return { 
-    register, 
-    handleSubmit, 
-    errors, 
-    handleRegister, 
-    loading, 
-    apiError, 
+  return {
+    register,
+    handleSubmit,
+    errors,
+    handleRegister,
+    loading,
+    apiError,
     tipoConta,
     handleTipoContaChange,
   };

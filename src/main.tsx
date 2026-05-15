@@ -1,16 +1,14 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-// Importas as tuas páginas aqui
-import { Home } from './components/home/index.tsx'
-import { Login } from './components/login/index.tsx'
-import { Cadastro } from './components/cadastro/index.tsx'
+import { Home } from "./components/home/index.tsx";
+import { Login } from "./components/login/index.tsx";
+import { Cadastro } from "./components/cadastro/index.tsx";
 
+import "./styles/global.css";
 
-import './styles/global.css'
-
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
@@ -21,4 +19,4 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
-)
+);

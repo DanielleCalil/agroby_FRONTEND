@@ -14,9 +14,13 @@ export function Cadastro() {
     handleTipoContaChange,
   } = useRegister();
 
+  const handleLogoClick = () => {
+    window.location.href = "/home";
+  };
+
   return (
     <div className="login-wrapper">
-      <div className="logo">
+      <div className="logo" onClick={handleLogoClick}>
         <img src="logo-AgroBy.png" alt="" />
         <h3>AgroBy</h3>
       </div>
@@ -38,15 +42,15 @@ export function Cadastro() {
               <label className="label-tipo-conta">Eu sou</label>
               <button
                 type="button"
-                className={`btn-tipo-conta ${tipoConta === "cliente" ? "selected" : ""}`}
-                onClick={() => handleTipoContaChange("cliente")}
+                className={`btn-tipo-conta ${tipoConta === "C" ? "selected" : ""}`}
+                onClick={() => handleTipoContaChange("C")}
               >
                 <div className="bolinha"></div> Cliente
               </button>
               <button
                 type="button"
-                className={`btn-tipo-conta ${tipoConta === "produtor" ? "selected" : ""}`}
-                onClick={() => handleTipoContaChange("produtor")}
+                className={`btn-tipo-conta ${tipoConta === "P" ? "selected" : ""}`}
+                onClick={() => handleTipoContaChange("P")}
               >
                 <div className="bolinha"></div> Produtor
               </button>
@@ -68,16 +72,14 @@ export function Cadastro() {
             )}
           </div>
 
-          {tipoConta === "produtor" && (
+          {tipoConta === "P" && (
             <>
               <div className="input">
                 <label htmlFor="nome_propriedade">Nome da propriedade</label>
                 <input
                   {...register("nome_propriedade", {
                     setValueAs: (value) =>
-                      typeof value === "string"
-                        ? value.toUpperCase()
-                        : value,
+                      typeof value === "string" ? value.toUpperCase() : value,
                   })}
                   type="text"
                   placeholder="Nome da propriedade"

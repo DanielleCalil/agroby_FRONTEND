@@ -30,6 +30,7 @@ export function Cadastro() {
         {apiError && <p className="error-message-global">{apiError}</p>}
 
         <div className="inputs">
+          <input type="hidden" {...register("tipo_conta")} />
           <div className="input">
             <label>Eu sou</label>
             <div className="tipo-conta">

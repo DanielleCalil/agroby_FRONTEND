@@ -17,7 +17,7 @@ export function Menu() {
 
   const handleLogout = () => {
     localStorage.removeItem("user");
-    localStorage.removeItem("token"); 
+    localStorage.removeItem("authToken");
     window.location.href = "/login";
   };
 

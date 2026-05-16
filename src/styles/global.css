@@ -328,12 +328,17 @@ footer p {
 }
 
 .cadastro-submit {
-  max-width: 720px;
+  max-width: 650px;
 }
 
 .inputs {
   width: 100%;
   max-width: 350px;
+}
+
+.inputs-cadastro{
+  width: 100%;
+  max-width: 650px;
 }
 
 .cadastro-inputs {

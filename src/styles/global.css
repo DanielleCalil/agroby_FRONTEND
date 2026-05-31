@@ -336,7 +336,7 @@ footer p {
   max-width: 350px;
 }
 
-.inputs-cadastro{
+.inputs-cadastro {
   width: 100%;
   max-width: 650px;
 }
@@ -365,12 +365,15 @@ footer p {
   width: 100%;
 }
 
-input {
+input,
+select {
   box-sizing: border-box;
   width: 100%;
   border-radius: 10px;
   border: 1px solid #b5b2b2;
   padding: 12px 10px;
+  font-family: inherit;
+  font-size: 14px;
 }
 
 .label-tipo-conta {
@@ -453,7 +456,7 @@ label {
 }
 
 .menu-container {
-  width: 200px;
+  width: 220px;
   min-height: 100vh;
   border-right: 1px solid #b5b2b2;
   display: flex;
@@ -508,7 +511,7 @@ label {
   height: 40px;
   width: 100%;
   max-width: 180px;
-  background-color: #F1F7EF;
+  background-color: #f1f7ef;
 }
 
 .footer {
@@ -562,4 +565,373 @@ label {
     flex-direction: column;
     gap: 0;
   }
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 40px;
+  border-radius: 15px;
+  border: 1px solid #c1c1c1;
+  --tw-shadow: 0 15px 30px -5px rgba(189, 239, 188, 0.4);
+  box-shadow:
+    var(--tw-inset-shadow, 0 0 #0000), var(--tw-inset-ring-shadow, 0 0 #0000),
+    var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
+    var(--tw-shadow);
+}
+
+.titulo p {
+  margin: 0;
+  max-width: 650px;
+  color: #525151;
+}
+
+.titulo h2 {
+  margin-bottom: 5px;
+  margin-top: 0;
+  color: #000000;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.dashboard-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.dashboard-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.logo-agroby {
+  align-self: flex-start;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  border: 1px solid #b5b2b2;
+  border-radius: 15px;
+  width: 350px;
+  margin: 0;
+}
+
+.container-cards {
+  display: flex;
+  justify-content: space-between;
+  margin-block: 40px;
+}
+
+.card-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-text p {
+  font-weight: 500;
+  color: #525151;
+  font-size: small;
+}
+
+.card-text p,
+.card-text h3 {
+  margin: 0;
+}
+
+.icon-card {
+  color: #2da92a;
+  background-color: #f1f7ef;
+  padding: 8px;
+  border-radius: 10px;
+}
+
+.title {
+  display: flex;
+  align-items: start;
+  font-size: medium;
+}
+
+.acoes-rapidas {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.card-acao-rapida {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  border: 1px solid #b5b2b2;
+  border-radius: 15px;
+  width: 350px;
+  margin: 0;
+  cursor: pointer;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.card-acao-rapida:hover {
+  border-color: #2da92a;
+  box-shadow: 0 0 10px rgba(45, 169, 42, 0.3);
+}
+
+.card-acao-rapida h3 {
+  margin: 0;
+  font-size: 16px;
+}
+.card-acao-rapida p {
+  margin: 0;
+  color: #525151;
+  font-size: small;
+}
+
+.descricao {
+  gap: 5px;
+}
+
+.icon-acao-rapida {
+  color: #ffffff;
+  background-color: #de7f14;
+  padding: 8px;
+  border-radius: 10px;
+}
+
+.safras-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.safras-content {
+  flex: 1;
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.header-safras {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 40px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #c1c1c1;
+}
+
+.header-safras h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.header-safras p {
+  margin: 0;
+  color: #525151;
+  font-size: small;
+}
+
+.button-safras {
+  background-color: #de7f14;
+  color: #ffffff;
+  font-size: 14px;
+  padding: 10px 30px;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0px 15px 40px -5px rgba(222, 127, 20, 0.15);
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-bottom: 15px;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.btn-close-modal {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #525151;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-close-modal:hover {
+  background-color: #f1f7ef;
+  color: #2da92a;
+}
+
+.salvar-safra {
+  background-color: #2da92a;
+  color: #ffffff;
+  font-size: 14px;
+  padding: 10px 30px;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0px 15px 40px -5px rgba(45, 169, 42, 0.15);
+  margin-top: 20px;
+  width: 100%;
+}
+
+/* --- ESTILOS DA LISTA E DOS CARDS DE SAFRA --- */
+.safras-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+}
+
+.safra-card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  background-color: #ffffff;
+  
+  /* Borda sutil verde igual à imagem */
+  border: 1px solid #bdefbc80; 
+  border-radius: 18px;
+  
+  /* Sombra laranja hiper suave que criamos antes */
+  box-shadow: 0px 15px 40px -5px rgba(222, 127, 20, 0.12);
+  
+  /* RESPONSIVIDADE: Ocupa tudo no mobile, mas limita-se em telas cheias */
+  width: 100%;
+  max-w-xl: 480px; /* Altere para o tamanho que achar melhor na tela cheia (ex: 450px a 500px) */
+  box-sizing: border-box;
+}
+
+/* Alinhamento do topo (Título + Badge) */
+.safra-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.safra-info-main {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Wrapper do ícone verde claro */
+.safra-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background-color: #eaf7ea;
+  border-radius: 10px;
+}
+
+.safra-icon {
+  width: 22px;
+  height: 22px;
+  color: #2da92a;
+}
+
+/* Título igual à imagem (Preto e Negrito) */
+.safra-card h3 {
+  margin: 0;
+  color: #000000;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+/* Badge Laranja "COLHEITA" */
+.safra-badge {
+  background-color: #de7f14;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 6px 14px;
+  border-radius: 8px;
+  text-transform: uppercase;
+}
+
+/* Corpo das linhas de informação */
+.safra-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Linha com efeito Space-Between (Texto na esquerda, valor na direita) */
+.safra-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+}
+
+.safra-row .label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #718096; /* Cinza sutil para as labels */
+}
+
+.safra-row .calendar-icon {
+  width: 16px;
+  height: 16px;
+  color: #a0aec0;
+}
+
+.safra-row .value {
+  color: #000000;
+  font-weight: 700; /* Valores em negrito na direita */
 }

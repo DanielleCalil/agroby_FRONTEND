@@ -2,11 +2,21 @@
 
 import { useState, useEffect } from "react";
 import { BookText, Sprout, User, LogOut, House } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export function Menu() {
-
+  const navigate = useNavigate();
+  const location = useLocation();
   const [activeSection, setActiveSection] = useState("home");
   const [userData, setUserData] = useState({ nome: "", email: "" });
+
+  useEffect(() => {
+    const path = location.pathname;
+    if (path.includes("dashboard")) setActiveSection("home");
+    else if (path.includes("safras")) setActiveSection("safras");
+    else if (path.includes("vendas")) setActiveSection("vendas");
+    else if (path.includes("propriedade")) setActiveSection("propriedade");
+  }, [location.pathname]);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -31,7 +41,7 @@ export function Menu() {
         <div className="secao">
           <button
             className={`btn-icon-menu ${activeSection === "home" ? "selected" : ""}`}
-            onClick={() => setActiveSection("home")}
+            onClick={() => navigate("/dashboard")}
           >
             <House size="20px" />
             <p>Home</p>
@@ -40,7 +50,7 @@ export function Menu() {
         <div className="secao">
           <button
             className={`btn-icon-menu ${activeSection === "safras" ? "selected" : ""}`}
-            onClick={() => setActiveSection("safras")}
+            onClick={() => navigate("/safras")}
           >
             <Sprout size="20px" />
             <p>Safras</p>
@@ -49,7 +59,7 @@ export function Menu() {
         <div className="secao">
           <button
             className={`btn-icon-menu ${activeSection === "vendas" ? "selected" : ""}`}
-            onClick={() => setActiveSection("vendas")}
+            onClick={() => navigate("/vendas")}
           >
             <BookText size="20px"/>
             <p>Vendas</p>
@@ -58,7 +68,7 @@ export function Menu() {
         <div className="secao">
           <button
            className={`btn-icon-menu ${activeSection === "propriedade" ? "selected" : ""}`}
-           onClick={() => setActiveSection("propriedade")}
+           onClick={() => navigate("/propriedade")}
            >
             <User size="20px"/>
             <p>Propriedade</p>

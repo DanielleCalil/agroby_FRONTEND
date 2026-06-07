@@ -7,7 +7,9 @@ interface PrivateRouteProps {
 }
 
 export const PrivateRoute = ({ children }: PrivateRouteProps) => {
-  const [status, setStatus] = useState<"checking" | "authorized" | "unauthorized">("checking");
+  const [status, setStatus] = useState<
+    "checking" | "authorized" | "unauthorized"
+  >("checking");
 
   useEffect(() => {
     const token = localStorage.getItem("authToken");

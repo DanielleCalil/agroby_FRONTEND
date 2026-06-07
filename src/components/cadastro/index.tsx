@@ -28,7 +28,7 @@ export function Cadastro() {
         className="container-login cadastro-container"
         onSubmit={handleSubmit(handleRegister)}
       >
-        <div className="title">
+        <div className="title-cadastro">
           <h3>Cadastro</h3>
           <p>Faça o cadastro para criar sua conta no AgroBy.</p>
         </div>

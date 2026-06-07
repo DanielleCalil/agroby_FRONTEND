@@ -1,10 +1,21 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useLogin } from "./hook/login-hook";
 
 export function Login() {
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
   const { register, handleSubmit, errors, handleLogin, loading, apiError } =
     useLogin();
+
+  useEffect(() => {
+    const pendingToast = sessionStorage.getItem("authToast");
+
+    if (pendingToast) {
+      setToastMessage(pendingToast);
+      sessionStorage.removeItem("authToast");
+    }
+  }, []);
 
   const handleLogoClick = () => {
     window.location.href = "/home";
@@ -17,10 +28,12 @@ export function Login() {
         <h3>AgroBy</h3>
       </div>
       <form className="container-login" onSubmit={handleSubmit(handleLogin)}>
-        <div className="title">
+        <div className="title-login">
           <h3>Login</h3>
           <p>Digite seu e-mail e senha para logar no AgroBy.</p>
         </div>
+
+        {toastMessage && <p className="toast-message">{toastMessage}</p>}
 
         {apiError && <p className="error-message">{apiError}</p>}
 
@@ -30,7 +43,7 @@ export function Login() {
             <input
               {...register("email")}
               type="email"
-              placeholder="Digite seu email"
+              placeholder="Digite seu e-mail"
             />
             {errors.email && (
               <span className="error-text">{errors.email.message}</span>
@@ -55,6 +68,14 @@ export function Login() {
           disabled={loading}
         >
           {loading ? "Carregando..." : "Entrar"}
+        </button>
+
+        <button
+          className="button-link"
+          type="button"
+          onClick={() => (window.location.href = "/esqueci-senha")}
+        >
+          Esqueci minha senha
         </button>
       </form>
     </div>

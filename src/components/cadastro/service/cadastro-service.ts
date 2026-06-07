@@ -6,7 +6,9 @@ const API_URL =
 
 type RegisterRequestData = Omit<RegisterFormData, "confirmPassword">;
 
-export const registerService = async (data: RegisterRequestData): Promise<void> => {
+export const registerService = async (
+  data: RegisterRequestData,
+): Promise<void> => {
   const response = await fetch(`${API_URL}/api/cadastro`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -14,7 +16,7 @@ export const registerService = async (data: RegisterRequestData): Promise<void> 
   });
 
   if (!response.ok) {
-    const body = await response.json() as ApiError;
+    const body = (await response.json()) as ApiError;
     throw new Error(body.error ?? "Erro ao realizar cadastro");
   }
 };

@@ -7,7 +7,7 @@ import { ModalNovaSafra } from "./modal-nova-safra";
 export function Safras() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [safrasList, setSafrasList] = useState<any[]>([]);
+  const [safrasList] = useState<any[]>([]);
 
   return (
     <div className="safras-container">

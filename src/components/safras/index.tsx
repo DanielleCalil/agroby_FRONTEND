@@ -28,15 +28,12 @@ export function Safras() {
           </div>
         </div>
 
-        {/* Só renderiza essa div e os cards se houver alguma safra cadastrada */}
         {safrasList.length > 0 && (
           <div className="safras-list">
             {safrasList.map((safra, index) => (
               <div className="safra-card" key={index}>
-                {/* Bloco de Cima: Ícone, Título e o Badge de Status */}
                 <div className="safra-header">
                   <div className="safra-info-main">
-                    {/* Ícone sutil da plantinha */}
                     <div className="safra-icon-wrapper">
                       <svg
                         className="safra-icon"
@@ -55,11 +52,10 @@ export function Safras() {
                     <h3>{safra.nome}</h3>
                   </div>
 
-                  {/* Badge de Status (Colheita) */}
                   <span className="safra-badge">{safra.status}</span>
                 </div>
 
-                {/* Bloco de Baixo: Linhas de Informações */}
+              {/* --- Card das safras ainda não testada --- */}
                 <div className="safra-body">
                   <div className="safra-row">
                     <span className="label">Quantidade</span>
